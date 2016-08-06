@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>タイトルが入ります</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<script>
+    
+    function judge(bmi,low,high,center,linel,lineh){ //本日のbmiを基準に評価する関数
+
+        if(linel<bmi&&bmi<lineh){ //超適正幅に入ってたら
+            //document.write("素晴らしい"); //素晴らしい
+            return "素晴らしい";
+        }
+
+        else{
+            if(low<bmi&&bmi<high){ //超適正幅には入ってないが、適正幅には入ってる
+                if(bmi>center){ //少し高め
+                    //document.write("適正だが少し痩せよう"); //適正だが少し痩せよう
+                }
+                else{ //少し低め
+                    //document.write("適正だが少し太ろう"); //適正だが少し太ろう
+                    return "適正だが少し痩せよう";
+                }
+            }
+
+            else{ //適正幅にも入ってない→危険帯域
+                if(bmi>high){ //太り過ぎ
+                    //document.write("運動しないとやばいよ"); //運動しないとやばいよ
+                    return "運動しないとやばいよ";
+                }
+                if(bmi<low){ //痩せすぎ
+                    //document.write("しっかり食わないとやばいよ");//しっかり食わないとやばいよ
+                    return "しっかり食わないとやばいよ";
+                }
+            }
+        }
+    }
+    
+    function return_dif(bmi,low,high,center,linel,lineh){ //本日のbmiを基準に適正ライン(center)からの差分を返す関数
+
+        if(linel<bmi&&bmi<lineh){ //超適正幅に入ってたら
+            //document.write("素晴らしい"); //素晴らしい
+            var a=bmi-center;
+            return a;
+        }
+
+        else{
+            if(low<bmi&&bmi<high){ //超適正幅には入ってないが、適正幅には入ってる
+                if(bmi>center){ //少し高め
+                    //document.write("適正だが少し痩せよう"); //適正だが少し痩せよう
+                    var a=bmi-center;
+                    return a;
+                }
+                else{ //少し低め
+                    //document.write("適正だが少し太ろう"); //適正だが少し太ろう
+                    var a=bmi-center;
+                    return a;
+                }
+            }
+
+            else{ //適正幅にも入ってない→危険帯域
+                if(bmi>high){ //太り過ぎ
+                    //document.write("運動しないとやばいよ"); //運動しないとやばいよ
+                    var a=bmi-center;
+                    return a;
+                }
+                if(bmi<low){ //痩せすぎ
+                    //document.write("しっかり食わないとやばいよ");//しっかり食わないとやばいよ
+                    var a=bmi-center;
+                    return a;
+                }
+            }
+        }
+    }
+    var bmi=30; //bmi=#{表示日のbmi}
+    var low=18,range=7; //low=#{適正下限bmi},range=#{適正bmiの幅}
+    var high=low+range; // high=#{適正上限bmi}
+    var center=(low+high)/2;//中央値
+    var lineh=center+range/4;//超適正上限
+    var linel=center-range/4;//超適正下限
+    //→ここらへんはAPIから値を変数に代入
+    
+    var result=judge(bmi,low,high,center,linel,lineh);
+    var dif_order=return_dif(bmi,low,high,center,linel,lineh);
+    document.write("<h1>"+"評価 : "+result+"  BMI指導 : "+"適正ラインから"+dif_order+"</h1>")
+    //document.write("lineh="+lineh+", linel="+linel);
+    //document.write("low="+low+", high="+high);
+    
+    
+</script>
+</html>

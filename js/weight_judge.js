@@ -7,28 +7,28 @@
     var linel=center-range/5;//超適正下限
     //→ここらへんはAPIから値を変数に代入
 
-    judge(bmi,low,high,center,linel,lineh){ //本日のbmiを基準に命令を下す関数
+    function judge(bmi,low,high,center,linel,lineh){ //本日のbmiを基準に命令を下す関数
 
         if(linel<bmi<lineh){ //超適正幅に入ってたら
-            return 0; //素晴らしい
+            document.write("素晴らしい"); //素晴らしい
         }
 
         else{
             if(low<bmi<high){ //超適正幅には入ってないが、適正幅には入ってる
                 if(bmi>center){ //少し高め
-                    return 1; //適正だが少し痩せよう
+                    document.write("適正だが少し痩せよう"); //適正だが少し痩せよう
                 }
                 else{ //少し低め
-                    return 2; //適正だが少し太ろう
+                    document.write("適正だが少し太ろう"); //適正だが少し太ろう
                 }
             }
 
             else{ //適正幅にも入ってない→危険帯域
                 if(bmi>high){ //太り過ぎ
-                    return 3; //運動しないとやばいよ
+                    document.write("運動しないとやばいよ"); //運動しないとやばいよ
                 }
                 if(bmi<low){ //痩せすぎ
-                    return 4; //しっかり食わないとやばいよ
+                    document.write("しっかり食わないとやばいよ");//しっかり食わないとやばいよ
                 }
             }
         }
@@ -36,7 +36,7 @@
 //
     var sum7;//七日間の和
 
-    judge2(sum7){ //個別で注意させたい危険を判断する関数
+    function judge2(sum7){ //個別で注意させたい危険を判断する関数
       if(sum7/7>500){
         return 5;
       }
@@ -46,7 +46,7 @@
     var today; //本日
     var dif; //本日が最終月経日から何日目
 
-    week_day(dif){ //最終月経日から数えて何週目の何日目か？
+    function week_day(dif){ //最終月経日から数えて何週目の何日目か？
       var week=dif/7;　//本日の当たる週
       var day=dif%7; //本日の当たる日
       return week,day;
@@ -60,7 +60,7 @@
     var day=dif%7; //本日の当たる日
     var clebration_day; //出産日は最終月経日から10月10日後とする
 
-    order_three(week,day){//期にしたがって判定命令する関数
+    function order_three(week,day){//期にしたがって判定命令する関数
       if(0<=week<=3){ //妊娠超初期の命令(一般人と同じ段階：19~25適正固定)
 
       }
