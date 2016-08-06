@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>タイトルが入ります</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="lib/jquery/jquery-3.1.0.min.js"></script>
+<script src="lib/highcharts/highcharts.js"></script>
+<script src="js/index.js"></script>
+</head>
+<body>
+
+<!--ヘッダー-->
+<header>
+    <h1><a href="#"><img src="" alt="logo"></a></h1>
+    <div id="header_contact"><a href="#"><img src="" alt="お問い合わせ"></a></div>
+    <nav id="global_navi">
+        <ul>
+            <li class="current"><a href="#">Top</a></li>
+            <li><a href="#">navi1</a></li>
+            <li><a href="#">navi2</a></li>
+            <li><a href="#">naxi3</a></li>
+            <li><a href="#">お問い合わせ</a></li>
+        </ul>
+    </nav>
+</header>
+<!--ヘッダー-->
+
+<!--wrapper-->
+<div id="wrapper">
+
+    <!--メイン-->
+    <div id="main">
+      <h4>ヘルスケアデータの取得</h4><br>
+
+      <form>
+        <!-- form-group, row, col-xx-x, form-controlはbootstrap固有のもの -->
+        <div class="">
+          <div class="">
+            <div class="">
+              <label class="sampleStyle" for="startDate">開始日（yyyymmdd）</label>
+            </div>
+            <div class="">
+              <input id="startDate" type="text" name="start" class="">
+            </div>
+          </div>
+        </div>
+        <div class="">
+          <div class="">
+            <div class="">
+              <label class="sampleStyle" for="endDate">終了日（yyyymmdd）</label>
+            </div>
+            <div class="">
+              <input id="endDate" type="text" name="end" class="">
+            </div>
+          </div>
+        </div>
+        <div>
+          <button type="button" id="getData" class="btn btn-info">取得</button>
+          <span id="feedbackForGet" style="margin-left:5pt;"></span>
+        </div>
+      </form>
+
+      <div id="resultTable">
+        <!-- 取得結果を表で表示する領域 -->
+      </div>
+      <div id="resultGraph">
+        <!-- 取得結果をグラフで表示する領域 -->
+      </div>
+
+    </div>
+    <!--メイン-->
+
+    <!--サイドバー-->
+    <aside id="sidebar">
+        <section id="side_banner">
+            <h2>関連リンク</h2>
+            <ul>
+                <li><a href="#" target="_blank"><img src="" alt="Link!"></a></li>
+                <li><a href="#" target="_blank"><img src="" alt="Link2"></a></li>
+            </ul>
+        </section>
+        <section id="side_contact">
+            <h2>お問い合わせ</h2>
+            <address><img src="images/phone.png" alt="TEL">xx-xxxx-xxxx</address>
+            <p>受付時間 xxx</p>
+            <p><a href="#" class="contact_botton">お問い合わせフォーム</a></p>
+        </section>
+    </aside>
+    <!--サイドバー-->
+
+</div>
+<!--wrapper-->
+
+<!--フッター-->
+<footer>
+    <div id="footer_nav">
+        <ul>
+            <li><a href="#"></a>Top</li>
+            <li><a href="#">navi1</a></li>
+            <li><a href="#">navi2</a></li>
+            <li><a href="#">navi3</a></li>
+            <li><a href="#">navi4</a></li>
+            <li><a href="#">プライバシーポリシー</a></li>
+        </ul>
+    </div>
+    <small>&copy; 2016 エムティーアイ.</small>
+</footer>
+<!--フッター-->
+
+</body>
+</html>

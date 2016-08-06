@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>タイトル</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!--wrapper-->
+<div id="wrapper">
+
+    <!--メイン-->
+    <div id="main">
+      <div id="breadcrumb">
+            <ol>
+                <li><a href="#">Top</a></li>
+                <li>入力画面</li>
+            </ol>
+        </div>
+        <section>
+            <h2>h2入力画面</h2>
+            <form id="entry">
+                <dl>
+                    <dt>ID<span class="must"> 必須</span></dt>
+                    <dd><input type="text" name="name" id="name" required></dd>
+                    <dt>妊娠何週目(週)<span class="must"> 必須</span></dt>
+                    <dd><input type="text" name="week" id="week" required></dd>
+                    <dt>出産予定日<span class="must"> 必須</span></dt>
+                    <dd><input type="text" name="plans" id="day" required></dd>
+                    <dt>身長(cm)<span class="must"> 必須</span></dt>
+                    <dd><input type="text" name="cm" id="cm" required></dd>
+                </dl>
+                <p id="submit_botton_cover">
+                    <input type="submit" id="submit_botton" value="送信する">
+                </p>
+                <p id="reset_botton_cover">
+                    <input type="reset" id="reset_botton" value="リセットする">
+                </p>
+            </form>
+        </section>
+    </div>
+    <!--メイン-->
+</div>
+<!--wrapper-->
+</body>
+</html>

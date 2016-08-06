@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>タブ変更でグラフ表示する</title>
+
+	<style type="text/css">
+		/* 表示領域全体 */
+		div.sample div.sampletabbox { margin: 0px; padding: 0px; width: 750px; }
+		/* タブ部分 */
+		div.sample p.sampletabs { margin: 0px; padding: 0px; }
+		div.sample p.sampletabs a { display: block; width: 5em; float: left; margin: 0px 1px 0px 0px; padding: 3px; text-align: center; border-radius: 12px 12px 0px 0px; }
+		div.sample p.sampletabs a.sampletab1 { background-color: blue;  color: white; }
+		div.sample p.sampletabs a.sampletab2 { background-color: #aaaa00; color: white; }
+		div.sample p.sampletabs a:hover { color: yellow; text-decoration: underline; }
+		/* 対応表示領域 */
+		div.sample div.sampletab { height: 500px; overflow: auto; clear: left; }
+		div.sample div#sampletab1 { border: 3px solid blue;  background-color: #ccffff; }
+		div.sample div#sampletab2 { border: 3px solid #aaaa00; background-color: #ffffcc; }
+		div.sample div.sampletab p { margin: 0.5em; }
+		/* 装飾（今回のテクニックとは無関係） */
+		div.sample div.sampletab ul, div.sampletab ol { margin-top: 0.5em; margin-bottom: 0.5em; }
+		div.sample div.sampletab li { line-height: 1.35; margin-bottom: 0px; margin-top: 0px; }
+		div.sample div.sampletab ul li { list-style-type: disc; }
+		div.sample div.sampletab p.tabhead { font-weight: bold; border-bottom: 3px double gray; }
+	</style>
+
+	<script type="text/javascript">
+		function ChangeTab(tabname) {
+			// 全部消す
+			document.getElementById('sampletab1').style.display = 'none';
+			document.getElementById('sampletab2').style.display = 'none';
+			// 指定箇所のみ表示
+			if(tabname) {
+				document.getElementById(tabname).style.display = 'block';
+			}
+		}
+//  $('#tab-switch a').on('click', function() {
+//    $('#tab-contents > div').hide();
+//    return false;
+//  });
+
+	</script>
+  <script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="./js/chart_weight.js"></script>
+
+</head>
+<body>
+
+	<h1>「ページ移動せずに内容を変更するタブを作る」サンプル</h1>
+	<p>▼表示例はここから▼</p>
+
+	<div class="sample">
+
+		<div class="sampletabbox">
+			<p class="sampletabs">
+				<a onclick="ChangeTab('sampletab1'); return false;" class="sampletab1" href="#sampletab1">体重</a>
+				<a onclick="ChangeTab('sampletab2'); return false;" class="sampletab2" href="#sampletab2">BMI</a>
+			</p>
+			<div class="sampletab" id="sampletab1">
+        <p class="tabhead">体重</p>
+        <script src="./js/chart_weight.js"></script>
+
+        <div id="container_weight" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+			</div>
+			<div class="sampletab" id="sampletab2">
+        <p class="tabhead">BMI</p>
+
+        <script src="./js/chart_bmi.js"></script>
+
+        <div id="container_bmi" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+			</div>
+		</div>
+    <script type="text/javascript"><!--
+  // デフォルトのタブを選択
+  ChangeTab('sampletab1');
+// --></script>
+	</div>
+</body>
+</html>
