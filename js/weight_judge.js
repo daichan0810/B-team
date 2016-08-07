@@ -7,38 +7,13 @@
     var linel=center-range/5;//超適正下限
     //→ここらへんはAPIから値を変数に代入
 
-    function judge(bmi,low,high,center,linel,lineh){ //本日のbmiを基準に命令を下す関数
-
-        if(linel<bmi<lineh){ //超適正幅に入ってたら
-            document.write("素晴らしい"); //素晴らしい
-        }
-
-        else{
-            if(low<bmi<high){ //超適正幅には入ってないが、適正幅には入ってる
-                if(bmi>center){ //少し高め
-                    document.write("適正だが少し痩せよう"); //適正だが少し痩せよう
-                }
-                else{ //少し低め
-                    document.write("適正だが少し太ろう"); //適正だが少し太ろう
-                }
-            }
-
-            else{ //適正幅にも入ってない→危険帯域
-                if(bmi>high){ //太り過ぎ
-                    document.write("運動しないとやばいよ"); //運動しないとやばいよ
-                }
-                if(bmi<low){ //痩せすぎ
-                    document.write("しっかり食わないとやばいよ");//しっかり食わないとやばいよ
-                }
-            }
-        }
-    }
 //
-    var sum7;//七日間の和
+    var sum_pre; //7日前のBMI
+    var sum_to; //今日のBMI
 
-    function judge2(sum7){ //個別で注意させたい危険を判断する関数
-      if(sum7/7>500){
-        return 5;
+    function judge2(sum_pre,sum_to){ //個別で注意させたい危険を判断する関数
+      if(|sum_to-sum_pre|>2.0){
+        return "ここ7日間でかなりBMIが変動しています、規則正しい食生活を心がけましょう";
       }
     }
 //

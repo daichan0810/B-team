@@ -7,7 +7,7 @@
 </head>
 
 <script>
-    
+//
     function judge(bmi,low,high,center,linel,lineh){ //本日のbmiを基準に評価する関数
 
         if(linel<bmi&&bmi<lineh){ //超適正幅に入ってたら
@@ -38,7 +38,7 @@
             }
         }
     }
-    
+//
     function return_dif(bmi,low,high,center,linel,lineh){ //本日のbmiを基準に適正ライン(center)からの差分を返す関数
 
         if(linel<bmi&&bmi<lineh){ //超適正幅に入ってたら
@@ -75,12 +75,66 @@
             }
         }
     }
+//
+    function order_three(today,week,day,clebration_day){//期にしたがって判定命令する関数
+      if(0<=week&&week<=3){ //妊娠超初期の命令(一般人と同じ段階：19~25適正固定)
+
+      }
+
+      else if(4<=week&&week<=15){ //妊娠初期の命令
+        return judge(bmi,low,high,center,linel,lineh);
+      }
+
+      else if(16=week&&week<=27){ //妊娠中期の命令
+        return judge(bmi,low,high,center,linel,lineh);
+      }
+
+      else if(28<=week&&week<=39){ //妊娠後期の命令
+        return judge(bmi,low,high,center,linel,lineh);
+      }
+
+      else if(40<=week&&week<=60){ //妊娠余剰期の処理
+        if(today==clebration_day){
+          return "本日が出産予定日です！おめでとうございます！"；
+          break;
+        }
+        else {
+          return judge(bmi,low,high,center,linel,lineh);
+        }
+      }
+    }
+//
     var bmi=30; //bmi=#{表示日のbmi}
     var low=18,range=7; //low=#{適正下限bmi},range=#{適正bmiの幅}
     var high=low+range; // high=#{適正上限bmi}
     var center=(low+high)/2;//中央値
     var lineh=center+range/4;//超適正上限
     var linel=center-range/4;//超適正下限
+    var final_moon; // 最終月経日
+    var today=new Date(); //本日
+    //年
+    var year = today.getFullYear();
+
+    //月
+    //1月が0、12月が11。そのため+1をする。
+    var month = today.getMonth()+1;
+
+    //日
+    var date = today.getDate();
+
+    //曜日
+    //日曜が0、土曜日が6。配列を使い曜日に変換する。
+    dateT = ["日","月","火","水","木","金","土"];
+    var dayw = dateT[today.getDay()];
+    
+    var dif=; //本日が最終月経日から何日目
+    var week=dif/7;　//本日の当たる週
+    var day=dif%7; //本日の当たる日　//ここら辺、日付の計算方わかんないから置いてる
+    
+    var cele=today.setMonth(today.getMonth()+10);
+    var clebration_day=cele.setDate(cele.getDate() + 3); //予定日は最終月経日より10か月と10日後
+    
+//
     //→ここらへんはAPIから値を変数に代入
     
     var result=judge(bmi,low,high,center,linel,lineh);
