@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>タイトルが入ります</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment.min.js"></script>
+</head>
+<script>
+// momentオブジェクトをセット
+    var m = moment(); //現在の時刻が入る
+    var output = m.format('YYYY年MM月DD日 HH:mm:ss dddd');
+    console.log(output); // => 2014年10月24日 11:44:00 Friday
+    
+//各単位出力    
+    var m = moment();
+    // 各単位のメソッド
+    /*
+    m.year();    // 年
+    m.month();   // 月 ※ 0〜11の値（始まりが0なので-1で計算）
+    m.date();   // 日
+    m.day();    // 曜日
+    m.hours();    // 時
+    m.minutes();  // 分
+    m.seconds();  // 秒
+    m.milliseconds();  // ミリ秒
+    */
+    console.log(m.year()); // => 2014
+
+// momentオブジェクトをセット、現在時刻でなく指定した日付の場合
+    var m = moment("20150101", "YYYYMMDD"); // 第一引数：指定日時、第二引数：フォーマット
+    var output = m.format('YYYY年MM月DD日 HH:mm:ss dddd');
+
+    console.log(output); // => 2015年01月01日 00:00:00 Thursday 
+
+//今日から指定日まで何日か？加算の場合はadd()、減算の場合はsubtract()を使う
+    var output = moment().add(30, 'days').format('YYYY年MM月DD日'); // add第一引数：日数、第二引数：単位   
+
+    console.log(output);  // => 2014年11月23日
+    
+//指定日から何日経過したか
+var output = moment().diff(moment([2014, 4, 1]), "days");
+
+console.log(output);  // => 176
+</script>
+</html>
