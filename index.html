@@ -1,9 +1,28 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Pickadate demo 001</title>
+
+<!-- CSS -->
+<link href="./css/calendar/fullcalendar.min.css" rel="stylesheet" type="text/css">
+<link href='./css/calendar/fullcalendar.print.css' rel='stylesheet' media='print' />
+
+
+<!-- JavaScript -->
+<script type="text/javascript" src="./js/calendar/moment.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="./js/calendar/jquery-ui.custom.min.js"></script>
+<script type="text/javascript" src="./js/calendar/fullcalendar.min.js"></script>
+<script type="text/javascript" src="./js/calendar/ja.js"></script>
+
+</head>
+<script>
 var tokenValue = "IGj9Xm1b1Xw817TL7W7MQFHBSehRh5PlA1XESXuyOvoclflo2IyUaVUyaFTtO7y3kNmQPP779bJln-u2CcmWUV0bTlBNUgMY";
 var apiUrl = "https://gnvduf9ntg.execute-api.ap-northeast-1.amazonaws.com/intern/activity/days"
 
 //GETでAPIを叩く関数
 $(function(){
-  $('button#getData').click(function(){
+  $('button#getData').click(function(){   //id,getdataのbuttonを押したら以下の処理を行う
     // 重複実行防止のためにボタンを押せなくする
     if(isNotEmptyForGet()){
       var button = $(this);
@@ -15,20 +34,20 @@ $(function(){
         type: "GET",
         dataType: "json",
         url: apiUrl,
-        data: {startDate: $('#startDate').val(), endDate: $('#endDate').val()},
+        data: {startDate: $('#startDate').val(), endDate: $('#endDate').val()},         //ここで、health.htmlの記入ボックスからデータをもらってるっぽい。
         success: function(data){
           console.log("GET Success !");
           var results = data.results;
           if(results.length > 0){
             // グラフ描画用変数
-            var graphXCategory = [], graphWSteps = [],graphTCal = [];
+            var graphXCategory = [], graphTCal = [];       //取得したデータを入れるための配列を定義する。
             var result = $('#resultTable');
             //結果表示領域を一度リセット
             result.empty();
             //結果表示領域に表示するhtmlの作成
             var table = $("<table>").attr("class","table table-striped").appendTo(result);
             var thead = $("<thead>").appendTo(table);
-            var tr = $("<tr>")
+            /*var tr = $("<tr>")
             .append("<th>測定日</th>")
             .append("<th>総消費カロリー</th>")
             .append("<th>歩数</th>")
@@ -36,21 +55,20 @@ $(function(){
             .append("<th>入力区分</th>")
             .append("</tr>")
             .append("</thead>")
-            .appendTo(thead);
+            .appendTo(thead);*/               //グラフの上に文字を入れたい時に使用する。
             var tbody = $("<tbody>").appendTo(table);
             for (var i = 0; i < results.length; i++) {
-              $("<tr>")
+              /*$("<tr>")
               .append("<td>" + results[i].measurementDate + "</td>")
               .append("<td>" + (results[i].totalUsedCalories || "-- ") + "kcal" + "</td>")
               .append("<td>" + (results[i].walkingSteps || "-- ") + "歩" + "</td>")
               .append("<td>" + (results[i].moderateIntensityExerciseMinutes || "-- ") + "分" + "</td>")
               .append("<td>" + (results[i].inputType) + "</td>")
-              .appendTo(tbody);
-              graphXCategory.push(results[i].measurementDate);
-              graphWSteps.push(results[i].walkingSteps);
-              graphTCal.push(results[i].totalUsedCalories);
+              .appendTo(tbody);*/             //グラフの上に取得したデータを文字で挿入する。
+              graphXCategory.push(results[i].measurementDate);    //定義した配列にmeasurementDate(観測日付)をかちこむ。ちなみにmeasurementDateはAPIで定義されているもの。
+              graphTCal.push(results[i].walkingSteps);            //定義した配列にwalkingSteps(歩数)をかちこむ。APIの仕様書にある、プロパティ名を変更することで、取得するデータを変更可能。
             }
-            drawGraph(graphXCategory,graphWSteps,graphTCal);
+            drawGraph(graphXCategory,graphTCal);
           }
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -65,45 +83,31 @@ $(function(){
 });
 
 // グラフ描画関数（highcharts.js）
-function drawGraph(xCategory, wSteps, tCal) {
+function drawGraph(xCategory, tCal) {       //graphXCategoryをxCategoryにgraphTCalをtCalにかちこむ
   $('div#resultGraph').highcharts({
     chart: {
       zoomType: 'xy'
     },
-    title: {
-      text: '歩数と総消費カロリー'
+    title: {    //図のタイトル
+      text: '体重'
     },
-    xAxis: [{
-      categories: xCategory,
+    xAxis: [{   //x軸について
+      categories: xCategory,    //データをかちこむ。
       crosshair: true
     }],
     yAxis: [{ // Primary yAxis
       labels: {
-        format: '{value}kcal',
+        format: '{value}kg',      //y軸のラベルについて
         style: {
           color: Highcharts.getOptions().colors[1]
         }
       },
       title: {
-        text: '総消費カロリー',
+        text: '体重',             //凡例のタイトル
         style: {
           color: Highcharts.getOptions().colors[1]
         }
       }
-    }, { // Secondary yAxis
-      title: {
-        text: '歩数',
-        style: {
-          color: Highcharts.getOptions().colors[0]
-        }
-      },
-      labels: {
-        format: '{value} 歩',
-        style: {
-          color: Highcharts.getOptions().colors[0]
-        }
-      },
-      opposite: true
     }],
     tooltip: {
       shared: true
@@ -118,24 +122,16 @@ function drawGraph(xCategory, wSteps, tCal) {
       backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
     },
     series: [{
-      name: '歩数',
-      type: 'column',
-      yAxis: 1,
-      data: wSteps,
-      tooltip: {
-        valueSuffix: ' 歩'
-      }
-
-    }, {
-      name: '総消費カロリー',
+      name: '体重',
       type: 'spline',
-      data: tCal,
+      data: tCal,       //データをかちこむ
       tooltip: {
-        valueSuffix: ' kcal'
+        valueSuffix: ' kg'
       }
     }]
   });
 }
+
 
 function isNotEmptyForGet(){
   var errMes = "";
@@ -148,3 +144,5 @@ function isNotEmptyForGet(){
   }
   return true;
 }
+</script>                                              
+</html>
