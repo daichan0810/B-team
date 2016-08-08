@@ -1,0 +1,30 @@
+@charset "utf-8";
+
+body {
+	margin: 0;
+	padding: 0;
+}
+.back {
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+}
+ul {
+	margin: 0;
+	padding-left: 0;
+}
+li {
+	list-style: none;
+}
+
+#tab-switch li {
+	display: inline-block;
+	margin: 5px;
+}
+#graph_w, #graph_b {
+	width: 600px;
+	height: 400px;
+}
+#graph_b  {
+	display: none;
+}

@@ -47,7 +47,7 @@ $(function(){
             //結果表示領域に表示するhtmlの作成
             var table = $("<table>").attr("class","table table-striped").appendTo(result);
             var thead = $("<thead>").appendTo(table);
-            /*var tr = $("<tr>")
+            *var tr = $("<tr>")
             .append("<th>測定日</th>")
             .append("<th>総消費カロリー</th>")
             .append("<th>歩数</th>")
@@ -55,16 +55,16 @@ $(function(){
             .append("<th>入力区分</th>")
             .append("</tr>")
             .append("</thead>")
-            .appendTo(thead);*/               //グラフの上に文字を入れたい時に使用する。
+            .appendTo(thead);               //グラフの上に文字を入れたい時に使用する。
             var tbody = $("<tbody>").appendTo(table);
             for (var i = 0; i < results.length; i++) {
-              /*$("<tr>")
+              $("<tr>")
               .append("<td>" + results[i].measurementDate + "</td>")
               .append("<td>" + (results[i].totalUsedCalories || "-- ") + "kcal" + "</td>")
               .append("<td>" + (results[i].walkingSteps || "-- ") + "歩" + "</td>")
               .append("<td>" + (results[i].moderateIntensityExerciseMinutes || "-- ") + "分" + "</td>")
               .append("<td>" + (results[i].inputType) + "</td>")
-              .appendTo(tbody);*/             //グラフの上に取得したデータを文字で挿入する。
+              .appendTo(tbody);             //グラフの上に取得したデータを文字で挿入する。
               graphXCategory.push(results[i].measurementDate);    //定義した配列にmeasurementDate(観測日付)をかちこむ。ちなみにmeasurementDateはAPIで定義されているもの。
               graphTCal.push(results[i].walkingSteps);            //定義した配列にwalkingSteps(歩数)をかちこむ。APIの仕様書にある、プロパティ名を変更することで、取得するデータを変更可能。
             }

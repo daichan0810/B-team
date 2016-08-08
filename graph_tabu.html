@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+
+<title>グラフをタブ切り替えで表示</title>
+
+<!--スタイルシート-->
+<link rel="stylesheet" href="./css/graph.css" />
+
+</head>
+<body>
+
+<ul id="tab-switch">  <!--タブ選択-->
+	<li><a href="#graph_w">体重推移</a></li>
+	<li><a href="#graph_b">bmi</a></li>
+</ul>
+<div id="tab-contents"> <!--表示部分-->
+	<div id="graph_w"></div>
+	<div id="graph_b"></div>
+</div>
+
+
+<script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="./js/chart_graph.js"></script>　　<!--グラフの読み込みデータ>
+
+</body>
+</html>
